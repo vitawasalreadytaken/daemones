@@ -1,0 +1,22 @@
+# Each daemon definition takes four lines. Definitions are separated by blank lines.
+# The format is fixed:
+# Line 1: Human-readable name of the daemon.
+# Line 2: Command to start the daemon (probably something like "sudo /etc/init.d/foo start").
+# Line 3: Command to stop the daemon (probably something like "sudo /etc/init.d/foo stop").
+# Line 4: Path to the PID file of the daemon. Its existence determines whether the daemon is running or not.
+
+Apache
+sudo service apache2 start
+sudo service apache2 stop
+/var/run/apache2.pid
+
+MySQL
+sudo service mysql start
+sudo service mysql stop
+/var/run/mysqld/mysqld.sock
+
+PostgreSQL 8.4
+sudo service postgresql-8.4 start
+sudo service postgresql-8.4 stop
+/var/run/postgresql/8.4-main.pid
+

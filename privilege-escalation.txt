@@ -1,0 +1,30 @@
+Starting/Stopping Daemons As a Non-Root User
+============================================
+
+Unless you are running your desktop as root (and that's one hell of a bad idea) you
+will probably not have permissions to start/stop daemons. Unless you want to do some
+SUID magic with the executables (and that's one hell of a bad idea) you should
+use sudo or su.
+
+
+
+* Option I: sudo, no password
+
+Run "sudo visudo" and add something like this at the end of the file:
+
+zephyr ALL = (root) NOPASSWD: /etc/init.d/apache2, /etc/init.d/mysql, /etc/init.d/postgresql-8.3
+
+List all the executables you need and don't forget to change "zephyr" to your user name.
+The configuration basically means that every time you run "sudo one-of-your-daemons" you
+won't be asked for password.
+
+Prefix your start/stop commands in the ~/.daemones config with "sudo" and you're done.
+You may have noticed that the example configuration assumes this case.
+
+
+
+* Option II: gksu/gksudo
+
+Prefix your start/stop commands in the ~/.daemones config with "gksu" or "gksudo".
+Every time you use daemones to start/stop a daemon, you will be asked for password.
+
